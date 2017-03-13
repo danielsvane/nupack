@@ -9,6 +9,8 @@ Template.insert.events({
   'click #submit'(event, instance) {
     event.preventDefault();
     let input = $("#code").val();
+    let prefix = $("#prefix").val();
+    let amount = $("#amount").val();
 
 
 
@@ -22,14 +24,26 @@ Template.insert.events({
       key[1] = reverseComplement(key[1]);
     });
 
+    code.map((key) => {
+      key[0] = prefix+key[0];
+    });
+
     console.log(code);
     // code.map((key) => {
     //   $("#output").append("<b>"+key[0]+"</b><br>"+key[1]+"<br>");
     // });
 
     code.map((key) => {
-      $("#order").append(key[0]+","+key[1]+",100nm,STD\n");
+      $("#order").append(key[0]+","+key[1]+","+amount+",STD\n");
     });
+    //
+    // $("#table").append("<table>");
+    // code.map((key) => {
+    //   $("#table").append("<tr>");
+    //   $("#table").append("<td><b>"+key[0]+"</b></td><td>"+key[1]+"</td>");
+    //   $("#table").append("</tr>");
+    // });
+    // $("#table").append("</table>");
   },
 });
 
